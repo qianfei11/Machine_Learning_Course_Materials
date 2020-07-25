@@ -51,8 +51,8 @@ if __name__ == '__main__':
     #plt.show()
     trainLoader = Data.DataLoader(dataset=trainData, batch_size=BATCH_SIZE, shuffle=True)
     testData = torchvision.datasets.MNIST(root='./mnist', train=False)
-    testX = torch.unsqueeze(testData.test_data, dim=1).type(torch.FloatTensor)[:2000] / 255.
-    testY = testData.test_labels[:2000]
+    testX = torch.unsqueeze(testData.data, dim=1).type(torch.FloatTensor)[:2000] / 255.
+    testY = testData.targets[:2000]
 
     cnn = CNN()
     print(cnn)
