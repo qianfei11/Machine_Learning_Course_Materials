@@ -15,6 +15,8 @@ def readData(filename):
         t = [float(n) for n in t]
         yApp.append(int(t[-1]))
         xApp.append(t[:-1])
+    print(len(yApp))
+    print(len(xApp))
     return yApp, xApp
 
 def dealWithData(yApp, xApp, trainingDataLength):
@@ -30,7 +32,6 @@ def dealWithData(yApp, xApp, trainingDataLength):
     for i in range(trainingDataLength, len(xApp)):
         xTesting.append(xApp[idxs[i]])
         yTesting.append(yApp[idxs[i]])
-    '''
     avgX = np.mean(np.mat(xTraining), axis=0).tolist()[0]
     stdX = np.std(np.mat(xTraining), axis=0).tolist()[0]
     print('[*] avgX = ' + str(avgX))
@@ -41,7 +42,6 @@ def dealWithData(yApp, xApp, trainingDataLength):
     for data in xTesting:
         for i in range(len(data)):
             data[i] = (data[i] - avgX[i]) / stdX[i]
-    '''
     return yTraining, xTraining, yTesting, xTesting
 
 def trainingModel(label, data, modelFilename):
@@ -117,7 +117,7 @@ def drawROC(yTesting, decisionValues):
 
 if __name__ == '__main__':
     yApp, xApp = readData('training.data')
-    yTraining, xTraining, yTesting, xTesting = dealWithData(yApp, xApp, 5000)
+    yTraining, xTraining, yTesting, xTesting = dealWithData(yApp, xApp, 8000)
     if input('Train or not? (y/n) ') == 'y':
         model = trainingModel(yTraining, xTraining, 'training.model')
     else:
